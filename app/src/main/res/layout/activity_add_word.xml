@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    tools:context=".AddWordActivity">
+
+  <!--  <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="Add New Word"
+        android:id="@+id/toolbar"
+        />-->
+    <EditText
+        style="@style/form_input_field"
+        android:id="@+id/wordEt"
+        android:hint="word" />
+    <EditText
+        android:id="@+id/meaningEt"
+        style="@style/form_input_field"
+        android:hint="meaning"
+        android:maxLines="3"
+        />
+
+    <EditText
+        android:id="@+id/synonymEt"
+        style="@style/form_input_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="synonym words separated by comma"
+        android:maxLines="3" />
+
+    <EditText
+        android:id="@+id/exampleUsage"
+        style="@style/form_input_field"
+        android:hint="Example Usage"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/saveBtn"
+        android:text="Save"
+        android:layout_marginTop="30dp"
+        android:paddingVertical="20dp"
+        android:paddingHorizontal="40dp"
+        android:layout_gravity="center_horizontal"
+        />
+
+</LinearLayout>

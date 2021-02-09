@@ -71,4 +71,7 @@ interface VocabDao {
 
     @Delete
     suspend fun delete(word: WordMeaning)
+
+    @Delete
+    suspend fun delete(words: List<WordMeaning>)
 }

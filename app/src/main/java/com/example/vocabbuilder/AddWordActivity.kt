@@ -10,30 +10,26 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.vocabbuilder.databinding.ActivityAddWordBinding
 import com.example.vocabbuilder.db.WordMeaning
 import com.example.vocabbuilder.viewmodels.AddWordViewModel
+import org.koin.androidx.viewmodel.compat.ScopeCompat.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AddWordActivity : AppCompatActivity() {
     private var binding: ActivityAddWordBinding? = null
-    lateinit var viewModel: AddWordViewModel
-
-    // private val db: VocabDatabase = VocabApp.VOCAB_DB
+    val viewModel: AddWordViewModel by viewModel<AddWordViewModel>()
     private var word: WordMeaning? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddWordBinding.inflate(layoutInflater)
-
-        //setSupportActionBar(binding!!.toolbar)
+        setContentView(binding!!.root)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        viewModel = ViewModelProviders.of(this).get(AddWordViewModel::class.java)
         viewModel.confirmationLiveData.observe(this, getObserver())
         binding!!.saveBtn.setOnClickListener { view -> saveWord() }
-        setContentView(binding!!.root)
         word = intent.extras?.getParcelable<WordMeaning>(RouteParam.NOTE_TO_EDIT)
         word?.let {
             setData(it)
         }
-        println("WORD IS ${word}")
     }
 
     private fun getObserver(): Observer<Boolean> = object : Observer<Boolean> {

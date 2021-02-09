@@ -4,14 +4,15 @@ import android.app.Application
 import androidx.lifecycle.*
 import com.example.vocabbuilder.db.WordMeaning
 import com.example.vocabbuilder.repositories.VocabularyRepository
-import com.example.vocabbuilder.repositories.VocabularyRepositoryImpl
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import org.koin.java.KoinJavaComponent.inject
 
 class AddWordViewModel(application: Application) : AndroidViewModel(application) {
-    val repository: VocabularyRepository by lazy { VocabularyRepositoryImpl() }
+    /*  val repository: VocabularyRepository by lazy { VocabularyRepositoryImpl() }
+  */
+    val repository: VocabularyRepository by inject(VocabularyRepository::class.java)
 
     val ioScopeContext = CoroutineScope(Dispatchers.IO)
 
@@ -20,7 +21,6 @@ class AddWordViewModel(application: Application) : AndroidViewModel(application)
 
     private val _confirmationLiveData: MutableLiveData<Boolean> = MutableLiveData()
     val confirmationLiveData: LiveData<Boolean> = _confirmationLiveData
-
 
     fun getAllWords() {
         ioScopeContext.launch {
@@ -34,7 +34,9 @@ class AddWordViewModel(application: Application) : AndroidViewModel(application)
 
     fun addOrUpdateWord(word: String, meaning: String, synonym: String, example: String) {
         ioScopeContext.launch {
-            repository.updateWord(word, meaning, synonym, example)}
-        _confirmationLiveData.postValue(true)
+            repository.updateWord(word, meaning, synonym, example)
+            _confirmationLiveData.postValue(true)
+
+        }
     }
 }

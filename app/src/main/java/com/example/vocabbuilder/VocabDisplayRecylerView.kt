@@ -9,7 +9,6 @@ import com.example.vocabbuilder.db.WordMeaning
 class VocabDisplayAdapter(val wordsList: List<WordMeaning>) :
     RecyclerView.Adapter<VocabDisplayViewHolder>() {
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VocabDisplayViewHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.each_word_row, parent, false)
@@ -31,6 +30,16 @@ class VocabDisplayAdapter(val wordsList: List<WordMeaning>) :
     override fun getItemCount(): Int =
         this.wordsList.size
 
+    fun deleteItem(position:Int) {
+      //  this.deletedItems.add(this.wordsList.get(position))
+        ( this.wordsList as MutableList).removeAt(position)
+        notifyItemRemoved(position)
+    }
+    fun restoreItem(item:WordMeaning,position:Int) {
+        ( this.wordsList as MutableList).add(position, item)
+        // this.deletedItems.removeAt(0)
+        notifyItemInserted(position)
+    }
 }
 
 class VocabDisplayViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

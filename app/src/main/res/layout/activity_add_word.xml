@@ -8,20 +8,18 @@
     android:gravity="center_vertical"
     tools:context=".AddWordActivity">
 
-  <!--  <androidx.appcompat.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:title="Add New Word"
-        android:id="@+id/toolbar"
-        />-->
+
     <EditText
         style="@style/form_input_field"
         android:id="@+id/wordEt"
+        android:textSize="15sp"
         android:hint="word" />
     <EditText
         android:id="@+id/meaningEt"
         style="@style/form_input_field"
         android:hint="meaning"
+        android:inputType="text|textMultiLine"
+        android:textSize="15sp"
         android:maxLines="3"
         />
 
@@ -30,14 +28,19 @@
         style="@style/form_input_field"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:inputType="text|textMultiLine"
         android:hint="synonym words separated by comma"
         android:maxLines="3" />
 
     <EditText
         android:id="@+id/exampleUsage"
         style="@style/form_input_field"
+        android:textSize="15sp"
+        android:inputType="text|textMultiLine"
         android:hint="Example Usage"
         />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -48,5 +51,4 @@
         android:paddingHorizontal="40dp"
         android:layout_gravity="center_horizontal"
         />
-
 </LinearLayout>
